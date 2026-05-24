@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BabuBhaiFX | Professional Minecraft Designer</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background: #06060c;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Ambient Glow Backgrounds */
+    .glow-cyan {
+      position: fixed;
+      top: -10%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: #00f2fe;
+      filter: blur(180px);
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    .glow-violet {
+      position: fixed;
+      bottom: -10%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: #7f00ff;
+      filter: blur(180px);
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 8%;
+      background: rgba(10, 10, 18, 0.6);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(45deg, #00f2fe, #7f00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .order-btn {
+      padding: 12px 28px;
+      background: linear-gradient(45deg, #00f2fe, #7f00ff);
+      border-radius: 50px;
+      color: #06060c;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }
+
+    .order-btn:hover {
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.7);
+      transform: scale(1.05);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 80px 8% 50px;
+    }
+
+    /* PFP Styling with Cyber Ring */
+    .hero-image {
+      margin-bottom: 35px;
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .pfp-glow {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #00f2fe, #7f00ff);
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.5);
+      z-index: 1;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      object-fit: cover;
+      border: 5px solid #06060c;
+    }
+
+    .hero-text h3 {
+      color: #7f00ff;
+      font-size: 18px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-text h1 {
+      font-size: 58px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .cyan-text {
+      color: #00f2fe;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    .hero-text p {
+      color: #b0b0bc;
+      line-height: 1.7;
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .price-tag {
+      display: inline-block;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      color: #00f2fe;
+      font-size: 16px;
+    }
+
+    /* Dual Column Layout Split Panel */
+    .split-panel-section {
+      max-width: 1100px;
+      margin: 0 auto 100px;
+      padding: 0 8%;
+    }
+
+    .grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .column-box {
+      background: linear-gradient(135deg, rgba(17, 17, 34, 0.4), rgba(10, 10, 18, 0.7));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .column-box h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
+    }
+
+    .left-col h2 {
+      color: #7f00ff;
+    }
+
+    .right-col h2 {
+      color: #00f2fe;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transition: 0.3s;
+    }
+
+    .social-item i {
+      font-size: 22px;
+    }
+
+    .dc-item i { color: #00f2fe; }
+    .ig-item i { color: #7f00ff; }
+
+    .social-item span {
+      font-size: 16px;
+      font-weight: 500;
+      color: #b0b0bc;
+    }
+
+    /* Left Column Hovers */
+    .dc-item:hover {
+      border-color: #00f2fe;
+      background: rgba(0, 242, 254, 0.03);
+      transform: translateX(5px);
+    }
+    .dc-item:hover span { color: white; }
+
+    .ig-item:hover {
+      border-color: #7f00ff;
+      background: rgba(127, 0, 255, 0.03);
+      transform: translateX(5px);
+    }
+    .ig-item:hover span { color: white; }
+
+    /* Right Column Specifics */
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .right-col p {
+      color: #a0a0b0;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .redirect-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px;
+      background: rgba(0, 242, 254, 0.05);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 12px;
+      color: #00f2fe;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    /* Box Hover Effects */
+    .column-box:hover {
+      transform: translateY(-5px);
+    }
+    
+    .left-col:hover {
+      border-color: rgba(127, 0, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(127, 0, 255, 0.08);
+    }
+
+    .right-col:hover {
+      border-color: rgba(0, 242, 254, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.08);
+    }
+
+    .right-col:hover .redirect-btn {
+      background: linear-gradient(45deg, #00f2fe, #7f00ff);
+      color: #06060c;
+      border-color: transparent;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+    }
+
+    /* Responsive Design Mobile Friendly */
+    @media (max-width: 868px) {
+      .hero-text h1 { font-size: 38px; }
+      .hero-text p { font-size: 16px; }
+      .grid-row { grid-template-columns: 1fr; gap: 20px; }
+      .split-panel-section { margin-bottom: 60px; }
+      .column-box { padding: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-cyan"></div>
+  <div class="glow-violet"></div>
+
+  <nav>
+    <div class="logo">BabuBhaiFX</div>
+    <a href="https://discord.com/users/babubhaifx" target="_blank" class="order-btn">Order Now</a>
+  </nav>
+
+  <section class="hero">
+    
+    <div class="hero-image">
+      <div class="pfp-glow"></div>
+      <img src="pfp.png" alt="BabuBhaiFX">
+    </div>
+
+    <div class="hero-text">
+      <h3>Professional Minecraft Designer</h3>
+      <h1>Hi, I am <span class="cyan-text">BabuBhaiFX</span></h1>
+      <p>
+        Specializing in crafting high-quality, eye-catching Minecraft thumbnails and unique server logos. Get premium custom graphics delivered quickly at highly affordable and budget-friendly rates!
+      </p>
+      
+      <div class="price-tag">
+        ⚡ Premium Quality at Budget Pricing
+      </div>
+    </div>
+  </section>
+
+  <section class="split-panel-section">
+    <div class="grid-row">
+      
+      <div class="column-box left-col">
+        <h2>Get In Touch</h2>
+        <div class="contact-row">
+          
+          <a href="https://discord.com/users/babubhaifx" target="_blank" class="social-item dc-item">
+            <i class="fa-brands fa-discord"></i>
+            <span>Discord Handle: babubhaifx</span>
+          </a>
+          
+          <a href="https://www.instagram.com/babubhai.fx" target="_blank" class="social-item ig-item">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram: @babubhai.fx</span>
+          </a>
+          
+        </div>
+      </div>
+
+      <a href="https://linktr.ee/babubhaifx" target="_blank" class="column-box right-col">
+        <div>
+          <h2>Check Out My Works</h2>
+          <p>
+            Dive deep into my dynamic project showcases! Click here to explore premium thumbnail iterations, exclusive vector logos, and custom graphics hosted directly on our main portfolio board.
+          </p>
+        </div>
+        <div class="redirect-btn">
+          View Complete Gallery <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</body>
+</html>
